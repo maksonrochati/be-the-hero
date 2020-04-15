@@ -18,11 +18,11 @@ module.exports = {
         "ongs.email",
         "ongs.whatsapp",
         "ongs.city",
-        "ongs.uf"
+        "ongs.uf",
       ]); // Select com array pq busca informação de 2 tabelas
 
     // Mostra a quantidade de casos no headre da resposta no insomnia
-    response.header("X-Total_count", count["count(*)"]);
+    response.header("x-total-count", count["count(*)"]);
 
     return response.json(incidents);
   },
@@ -35,7 +35,7 @@ module.exports = {
       title,
       description,
       value,
-      ong_id
+      ong_id,
     });
 
     return response.json({ id });
@@ -55,10 +55,8 @@ module.exports = {
       return response.status(401).json({ error: "Operação não permitida." });
     }
 
-    await connection("incidents")
-      .where("id", id)
-      .delete();
+    await connection("incidents").where("id", id).delete();
 
     return response.status(204).send();
-  }
+  },
 };
